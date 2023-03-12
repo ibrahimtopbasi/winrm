@@ -8,12 +8,12 @@ require (
 	github.com/gofrs/uuid v4.2.0+incompatible
 	github.com/jcmturner/gokrb5/v8 v8.4.2
 	github.com/masterzen/simplexml v0.0.0-20190410153822-31eea3082786
-	github.com/masterzen/winrm v0.0.0-20220917170901-b07f6cb0598d
 	golang.org/x/text v0.3.7
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127
 )
 
 require (
+	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/hashicorp/go-uuid v1.0.2 // indirect
 	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
 	github.com/jcmturner/dnsutils/v2 v2.0.0 // indirect
