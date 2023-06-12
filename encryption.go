@@ -79,7 +79,20 @@ func (e *Encryption) Transport(endpoint *Endpoint) error {
 }
 
 func (e *Encryption) Post(client *Client, message *soap.SoapMessage) (string, error) {
-	e.ntlmClient, _ = ntlmssp.NewClient(ntlmssp.SetUserInfo(client.username, client.password), ntlmssp.SetVersion(ntlmssp.DefaultVersion()))
+	var userName, domain string
+	if strings.Contains(client.username, "@") {
+		parts := strings.Split(client.username, "@")
+		domain = parts[1]
+		userName = parts[0]
+	} else if strings.Contains(client.username, "\\") {
+		parts := strings.Split(client.username, "\\")
+		domain = parts[0]
+		userName = parts[1]
+	} else {
+		userName = client.username
+	}
+
+	e.ntlmClient, _ = ntlmssp.NewClient(ntlmssp.SetUserInfo(userName, client.password), ntlmssp.SetDomain(domain), ntlmssp.SetVersion(ntlmssp.DefaultVersion()))
 	e.ntlmhttp, _ = ntlmhttp.NewClient(e.httpClient, e.ntlmClient)
 	e.ntlmhttp.Debug = false
 
