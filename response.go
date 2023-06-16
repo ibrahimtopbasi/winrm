@@ -2,6 +2,7 @@ package winrm
 
 import (
 	"encoding/base64"
+	"errors"
 	"fmt"
 	"io"
 	"strconv"
@@ -46,20 +47,45 @@ func xPath(node tree.Node, xpath string) (tree.NodeSet, error) {
 
 //ParseOpenShellResponse ParseOpenShellResponse
 func ParseOpenShellResponse(response string) (string, error) {
+	if response == "" {
+		return "", errors.New("empty response")
+	}
+
 	doc, err := xmltree.ParseXML(strings.NewReader(response))
 	if err != nil {
 		return "", err
 	}
-	return first(doc, "//w:Selector[@Name='ShellId']")
+
+	shellID, err := first(doc, "//w:Selector[@Name='ShellId']")
+	if err != nil {
+		return "", err
+	}
+	if shellID != "" {
+		return shellID, nil
+	}
+
+	return "", errors.New("invalid shell id")
 }
 
 //ParseExecuteCommandResponse ParseExecuteCommandResponse
 func ParseExecuteCommandResponse(response string) (string, error) {
+	if response == "" {
+		return "", errors.New("empty response")
+	}
+
 	doc, err := xmltree.ParseXML(strings.NewReader(response))
 	if err != nil {
 		return "", err
 	}
-	return first(doc, "//rsp:CommandId")
+	commandID, err := first(doc, "//rsp:CommandId")
+	if err != nil {
+		return "", err
+	}
+	if commandID != "" {
+		return commandID, nil
+	}
+
+	return "", errors.New("invalid command id")
 }
 
 //ParseSlurpOutputErrResponse ParseSlurpOutputErrResponse
@@ -68,6 +94,10 @@ func ParseSlurpOutputErrResponse(response string, stdout, stderr io.Writer) (boo
 		finished bool
 		exitCode int
 	)
+
+	if response == "" {
+		return false, 0, nil
+	}
 
 	doc, err := xmltree.ParseXML(strings.NewReader(response))
 	if err != nil {
@@ -107,7 +137,14 @@ func ParseSlurpOutputResponse(response string, stream io.Writer, streamType stri
 		exitCode int
 	)
 
+	if response == "" {
+		return false, 0, nil
+	}
+
 	doc, err := xmltree.ParseXML(strings.NewReader(response))
+	if err != nil {
+		return false, 0, err
+	}
 
 	nodes, _ := xPath(doc, fmt.Sprintf("//rsp:Stream[@Name='%s']", streamType))
 	for _, node := range nodes {

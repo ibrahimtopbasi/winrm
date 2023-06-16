@@ -96,7 +96,8 @@ func (e *Encryption) Post(client *Client, message *soap.SoapMessage) (string, er
 	e.ntlmhttp, _ = ntlmhttp.NewClient(e.httpClient, e.ntlmClient)
 	e.ntlmhttp.Debug = false
 
-	if e.PrepareRequest(client, client.url) == nil {
+	var err error
+	if err = e.PrepareRequest(client, client.url); err == nil {
 		return e.PrepareEncryptedRequest(client, client.url, []byte(message.String()))
 	} else {
 		return e.ntlm.Post(client, message)
