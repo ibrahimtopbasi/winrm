@@ -76,7 +76,7 @@ func newCommandReader(stream string, command *Command) *commandReader {
 func fetchOutput(ctx context.Context, command *Command) {
 	defer func() {
 		if r := recover(); r != nil {
-			err := errors.New(fmt.Sprintf("Recovered from panic:", r))
+			err := errors.New(fmt.Sprintf("Recovered from panic: %+v", r))
 			command.Stderr.write.CloseWithError(err)
 			command.Stdout.write.CloseWithError(err)
 			close(command.done)
