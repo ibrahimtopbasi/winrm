@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/CalypsoSys/bobwinrm/soap"
+	"github.com/ibrahimtopbasi/winrm/soap"
 	. "gopkg.in/check.v1"
 )
 

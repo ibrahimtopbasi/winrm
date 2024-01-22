@@ -1,10 +1,10 @@
-module github.com/CalypsoSys/bobwinrm
+module github.com/ibrahimtopbasi/winrm
 
 go 1.18
 
 require (
 	github.com/Azure/go-ntlmssp v0.0.0-20211209120228-48547f28849e
-	github.com/CalypsoSys/bobntlmssp v0.0.0-20230312131519-5d92ca710dc8
+	ibrahimtopbasi/winrm/bobntlmssp v0.0.0-20230312131519-5d92ca710dc8
 	github.com/ChrisTrenkamp/goxpath v0.0.0-20210404020558-97928f7e12b6
 	github.com/gofrs/uuid v4.2.0+incompatible
 	github.com/jcmturner/gokrb5/v8 v8.4.2

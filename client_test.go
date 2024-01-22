@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/CalypsoSys/bobwinrm/soap"
+	"github.com/ibrahimtopbasi/winrm/soap"
 
 	"net"
 	"time"

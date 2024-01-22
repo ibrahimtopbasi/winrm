@@ -6,7 +6,7 @@ import (
 	"net/url"
 
 	"github.com/Azure/go-ntlmssp"
-	"github.com/CalypsoSys/bobwinrm/soap"
+	"github.com/ibrahimtopbasi/winrm/soap"
 )
 
 // ClientNTLM provides a transport via NTLMv2

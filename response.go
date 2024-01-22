@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/CalypsoSys/bobwinrm/soap"
+	"github.com/ibrahimtopbasi/winrm/soap"
 	"github.com/ChrisTrenkamp/goxpath"
 	"github.com/ChrisTrenkamp/goxpath/tree"
 	"github.com/ChrisTrenkamp/goxpath/tree/xmltree"

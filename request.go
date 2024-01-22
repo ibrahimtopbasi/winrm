@@ -4,7 +4,7 @@ import (
 	"encoding/base64"
 
 	"github.com/gofrs/uuid"
-	"github.com/CalypsoSys/bobwinrm/soap"
+	"github.com/ibrahimtopbasi/winrm/soap"
 )
 
 func genUUID() string {

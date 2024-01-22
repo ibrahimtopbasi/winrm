@@ -12,9 +12,9 @@ import (
 	"strconv"
 	"strings"
 
-	ntlmssp "github.com/CalypsoSys/bobntlmssp"
-	ntlmhttp "github.com/CalypsoSys/bobntlmssp/http"
-	"github.com/CalypsoSys/bobwinrm/soap"
+	ntlmssp "github.com/ibrahimtopbasi/bobntlmssp"
+	ntlmhttp "github.com/ibrahimtopbasi/winrm/bobntlmssp/http"
+	"github.com/ibrahimtopbasi/winrm/soap"
 )
 
 type Encryption struct {
